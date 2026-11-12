@@ -8,10 +8,11 @@ Crew gives a solo photographer a team of AI agents that plan a shoot, check it, 
 
 1. **Set the contract.** On the Delegate screen the photographer chooses what the agents must ask before doing: posting anything, reshooting a shot, spending money, changing the look. Everything else the agents just do.
 2. **Add references.** The photographer drops reference photos onto the project board.
+   A short chat with the Planning agent sets how the photos should feel; the answer is passed to the Shot list and Posting agents.
 3. **Scout reads the look.** The Scout agent looks at the photos and returns the look as five tags (light, colour, scale, composition), then sorts the photos into three setups for the shoot.
 4. **The shot list is drafted.** The Shot list agent turns the look and the setups into an eight-shot list, grouped by setup, and waits for approval.
-5. **Shoot.** Each setup has a brief with its shots and a lighting note, followed by the quiet camera view.
-6. **Review checks coverage.** The Review agent compares the shoot report with the shot list. If a must-have shot has no usable take it requests a reshoot, which the contract may require the photographer to approve. The question arrives as a lock-screen notification with three answers: reshoot, use the closest photo, or skip the shot.
+5. **Shoot.** Each setup has a brief with its shots and a lighting note.
+6. **Review checks coverage.** The Review agent compares the shoot report with the shot list. If a must-have shot has no usable take it requests a reshoot, which the contract may require the photographer to approve. The question comes with three answers: reshoot, use the closest photo, or skip the shot.
 7. **Editing picks takes.** The Editing agent chooses takes on its own and asks only when two takes are near-identical and the choice is a matter of taste.
 8. **Review approves the edit** against the look. If it does not approve, nothing is posted.
 9. **Posting drafts and publishes.** The Posting agent writes a caption and picks a photo for each channel (Instagram, TikTok, email, product page). With "Posting anything" switched on, the photographer holds to post; with it off, the agent publishes directly.
@@ -28,13 +29,13 @@ Crew gives a solo photographer a team of AI agents that plan a shoot, check it, 
 | Contract | What happens |
 |---|---|
 | Any switch on | The agents pause at each action the photographer asked to approve: the shot list, a reshoot, a taste call on a take, posting. |
-| Every switch off | Hands-off. The agents plan on their own, notify the photographer when the shots are ready ("8 shots planned. Time to shoot."), and after the shoot finish through to posted without asking anything. |
+| Every switch off | Hands-off. The agents plan on their own and hand the photographer a locked shot list to shoot from. After the shoot they finish through to posted without asking anything. |
 
 ## The crew
 
 | Agent | Job | Acts through |
 |---|---|---|
-| Planning | Records the autonomy contract for the project | (no model call) |
+| Planning | Records the autonomy contract; talks through the vision with the photographer | chat reply |
 | Scout | Reads the reference photos; reports the look and the setups | `report_look`, `group_photos` |
 | Shot list | Drafts the eight-shot list | `draft_shot_list` |
 | Review | Checks shoot coverage, then approves the edit against the look | `request_reshoot`, `approve_edits` |
@@ -73,7 +74,7 @@ flowchart LR
   Agents -- "tool call" --> Gate
   Gate -- "allowed" --> State
   Gate -- "must ask" --> Queue
-  Queue -- "shown as question,<br/>notification, Needs you" --> UI
+  Queue -- "shown as question,<br/>Needs you" --> UI
   UI -- "POST /api/resolve<br/>(answer)" --> Queue
   Queue -- "answer resumes the agent" --> Agents
   State -- "GET /api/state (polled)" --> UI
@@ -83,7 +84,7 @@ flowchart LR
 **The autonomy gate is the core of the product.** Agents never perform a side effect directly. Every action is a tool call, and every tool call passes through one function on the server that checks it against the photographer's contract:
 
 - If the contract allows it, the action runs and is written to the activity log.
-- If the contract says "ask me before", the agent is paused, the question goes into the approval queue, and the phone shows it (as a lock-screen notification, a question screen, or a "Needs you" card in the team modal). The photographer's answer is returned to the agent as the tool result, and the agent carries on with that answer.
+- If the contract says "ask me before", the agent is paused, the question goes into the approval queue, and the phone shows it (as a question screen and a "Needs you" status in the team modal). The photographer's answer is returned to the agent as the tool result, and the agent carries on with that answer.
 
 Because the gate sits in the server and not in the agents' prompts, an agent cannot talk itself past it.
 
@@ -122,9 +123,12 @@ server.js        Agent server: orchestrator, agents, tools, autonomy gate, HTTP 
 photos/          Reference photos Scout reads
 saved-runs/      Last finished run of each agent, used for replay
 mobile/
-  App.js         The phone app: screens, tap flow, live agent output
-  images.js      Bundled screen frames and photos
-  assets/        Screen frames, reference photos, app icons
+  App.js         Navigation: setup steps, then the screen follows the run's state
+  src/api.js     Server client and polling hook
+  src/components.js   Shared UI: agent pill, team modal, buttons, photo stacks
+  src/screens/   Setup (studio, contract, board, vision), Plan (look, shot list, brief), Run (working, questions, posts, receipt)
+  images.js      Bundled reference photos
+  assets/        Reference photos, app icons
 ```
 
 ## API
@@ -133,4 +137,5 @@ mobile/
 |---|---|
 | `POST /api/start` `{ askBefore }` | Start a run under the given contract |
 | `POST /api/resolve` `{ id, answer }` | Answer a pending question or signal a step (`photos`, `shotlist`, `shoot`, `reshoot`, `take`, `post`) |
+| `POST /api/chat` `{ message }` | Say something to the Planning agent on the vision screen |
 | `GET /api/state` | Current run: agents, pending questions, outputs, activity log |

@@ -3,7 +3,7 @@
     {
       "name": "ask_user",
       "input": {
-        "question": "Signet ring, giant hand: Take 4 is sharper, Take 7 has warmer light. I'd pick Take 4 so the ring detail reads crisply. Which one?",
+        "question": "Signet ring, giant hand: Take 4 is sharper, Take 7 has warmer light. I'd pick Take 4 since the detail suits hard flash. Which one?",
         "options": [
           "Use Take 4",
           "Use Take 7"
@@ -11,5 +11,5 @@
       }
     }
   ],
-  "text": "I picked Take 4 for \"Signet ring, giant hand\" because the ring's detail is sharper. I picked, cropped and edited the best take of six other shots. \"Pearl necklace on the grass\" is on hold until the reshoot, since the necklace was missing its clasp."
+  "text": "I picked the best take for six of the eight shots. For \"Signet ring, giant hand prop\" I'm using Take 4. It and Take 7 were nearly the same, and you left the call to me. Take 4's sharper detail works better with the hard flash and low angle than Take 7's warmer light. \"Pearl necklace, tiny model\" isn't edited yet because it was missing its clasp, so it's waiting on the scheduled reshoot."
 }

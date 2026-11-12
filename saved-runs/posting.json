@@ -4,7 +4,7 @@
       "name": "post",
       "input": {
         "channel": "Instagram",
-        "caption": "Tiny world, giant sparkle. Welcome to Girlhood ✨",
+        "caption": "Big dreams, tiny girls. The Girlhood drop is here ✨",
         "photo": 2
       }
     },
@@ -12,15 +12,15 @@
       "name": "post",
       "input": {
         "channel": "TikTok",
-        "caption": "POV: the sky dressed you this morning ☁️💗",
-        "photo": 7
+        "caption": "POV: your sunglasses are bigger than you 🕶️💗",
+        "photo": 6
       }
     },
     {
       "name": "post",
       "input": {
         "channel": "Email",
-        "caption": "The new drop is here: candy-sweet and a little strange",
+        "caption": "Candy-colored treasures, laid out just for you 🍬",
         "photo": 1
       }
     },
@@ -28,18 +28,18 @@
       "name": "post",
       "input": {
         "channel": "Instagram",
-        "caption": "Shades so big, the grass looks up to you 🕶️🌱",
-        "photo": 9
+        "caption": "Lying in the grass, wearing the sky ☁️",
+        "photo": 7
       }
     },
     {
       "name": "post",
       "input": {
         "channel": "Product page",
-        "caption": "Pastel treasures for everyday daydreams",
+        "caption": "Pastel pieces for playing pretend, every day.",
         "photo": 3
       }
     }
   ],
-  "text": "All five posts went up in order, each with a different photo. I chose photos by their group labels only, since I couldn't see the images, so the captions describe what each group should look like rather than what's actually in each photo.\n\n1. **Instagram, photo 2** (Giant scale tricks): \"Tiny world, giant sparkle. Welcome to Girlhood ✨\"\n2. **TikTok, photo 7** (Outdoor sky + grass): \"POV: the sky dressed you this morning ☁️💗\"\n3. **Email, photo 1** (Top-down everyday): \"The new drop is here: candy-sweet and a little strange\"\n4. **Instagram, photo 9** (Outdoor sky + grass): \"Shades so big, the grass looks up to you 🕶️🌱\"\n5. **Product page, photo 3** (Top-down everyday): \"Pastel treasures for everyday daydreams\"\n\nThe caption on photo 9 names sunglasses, which I didn't know were in the shot. If they aren't, that caption should be fixed."
+  "text": "All five posts are live, each with a different photo and a caption under 60 characters:\n\n1. **Instagram**, photo 2 (giant scale): \"Big dreams, tiny girls. The Girlhood drop is here ✨\"\n2. **TikTok**, photo 6 (giant scale): \"POV: your sunglasses are bigger than you 🕶️💗\"\n3. **Email**, photo 1 (overhead flat lay): \"Candy-colored treasures, laid out just for you 🍬\"\n4. **Instagram**, photo 7 (outdoor sky and grass): \"Lying in the grass, wearing the sky ☁️\"\n5. **Product page**, photo 3 (overhead flat lay): \"Pastel pieces for playing pretend, every day.\"\n\nI picked photos by their group and the look summary, not by seeing each image. Some captions describe things I couldn't confirm. The TikTok one assumes photo 6 shows oversized sunglasses, the second Instagram one assumes a girl lying in grass in photo 7, and the Email one assumes candy-colored pieces laid out in photo 1. If a photo doesn't match its caption, that post should be edited."
 }

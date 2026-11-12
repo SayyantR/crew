@@ -4,9 +4,9 @@
       "name": "approve_edits",
       "input": {
         "ok": true,
-        "notes": "Approved: picking Take 4 for \"Signet ring, giant hand\" for the sharper ring detail suits the giant-vs-tiny jewelry focus, the six other shots were picked, cropped and edited, and the \"Pearl necklace on the grass\" reshoot is already settled."
+        "notes": "Approved: Take 4's sharper detail under hard flash suits the flat-flash, giant-vs-tiny look better than Take 7's warmer light, the pearl necklace is correctly waiting on its scheduled reshoot, but please confirm the low angle on the signet ring still fits the overhead-angle look and say which shot is the eighth."
       }
     }
   ],
-  "text": "I approved the edits. Take 4 is a good pick for \"Signet ring, giant hand\": the sharper ring detail is what makes the giant-vs-tiny scale shift work, and that's central to the look. The six other shots were each picked, cropped and edited from their best take.\n\n\"Pearl necklace on the grass\" is on hold until the reshoot because the clasp was missing. You'd already decided that, so I didn't count it against the set."
+  "text": "I approved the edits, with two small follow-ups noted.\n\n- **Signet ring, giant hand prop:** Take 4 is the right pick. Its sharper detail under hard flash fits the flat-flash, giant-vs-tiny look better than Take 7's warmer light.\n- **Pearl necklace, tiny model:** Holding it for the scheduled reshoot is fine. That was already decided, so it didn't block approval.\n\nFollow-ups:\n1. **Angle:** The look calls for overhead angles, but the signet ring shot is low-angle. A low angle can make the hand prop feel bigger, but please check it still matches the rest of the set.\n2. **Shot count:** I'm reading this as six shots edited plus the signet ring, which makes seven, with the pearl necklace still to do. If that's wrong and the signet ring is one of the six, please say what happened to the remaining shot."
 }
