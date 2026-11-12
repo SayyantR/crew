@@ -182,6 +182,25 @@ async function runAgent(s, key, system, content, toolNames, saveAs = key) {
 }
 
 const BRAND = 'The brand is Girlhood: jewelry, clothing and sunglasses. Dreamy, playful, a little surreal.';
+// The Planning agent's chat on the vision screen: one live reply to what the photographer says the shoot should feel like.
+async function chat(s, message) {
+  const fallback = "Got it. Show me what that looks like: photos, links, screenshots or a video.";
+  s.chat = { message, reply: null }; s.vision = message;
+  log(s, 'you', message, 'user'); set(s, 'planning', 'Working', 'Setting the vision');
+  try {
+    const { text } = await live(
+      `You are the Planning agent on a photographer's crew, setting the creative vision for a shoot. The brand is Girlhood: jewelry, clothing and sunglasses. ` +
+      'The project is a product launch due Nov 20. You asked what the photos should feel like. Reply to the answer in at most 110 characters: ' +
+      'reflect it back in your own words, then ask to see references (photos, links, screenshots or a video). Plain text, no emoji.',
+      message);
+    s.chat.reply = text?.trim() || fallback;
+  } catch (e) {
+    log(s, 'planning', `Live call failed (${e.message}).`, 'error');
+    s.chat.reply = fallback;
+  }
+  log(s, 'planning', s.chat.reply, 'out'); set(s, 'planning', 'Done', `Vision: ${message}`);
+}
+
 async function run(s) {
   try {
     await wait(s, 'photos');
@@ -203,7 +222,8 @@ async function run(s) {
       'Order the shots by group: 3 for the first group, 3 for the second, 2 for the third. Titles are at most 28 characters, ' +
       'sentence case, for example "Signet ring, hand to camera". Notes are at most 60 characters.',
       `Look: ${JSON.stringify(s.look)}\nGroups: ${JSON.stringify(s.groups)}\n` +
-      'Products in this drop: signet ring, pearl necklace, silver rings, cat-eye sunglasses, baby tee.',
+      'Products in this drop: signet ring, pearl necklace, silver rings, cat-eye sunglasses, baby tee.' +
+      (s.vision ? `\nThe photographer wants the photos to feel: ${s.vision}.` : ''),
       ['draft_shot_list']);
 
     await wait(s, 'shoot'); // even hands-off, the photographer still has to shoot
@@ -239,7 +259,8 @@ async function run(s) {
     await runAgent(s, 'posting',
       `You are the Posting agent on a photographer's crew. ${BRAND} Publish the drop: call post five times in one turn, in this order: ` +
       'Instagram, TikTok, Email, Instagram, Product page. Each post has a caption of at most 60 characters in the brand voice and the number (1-10) of the photo it uses. Use a different photo for each.',
-      `Look: ${JSON.stringify(s.look)}\nGroups: ${JSON.stringify(s.groups)}`,
+      `Look: ${JSON.stringify(s.look)}\nGroups: ${JSON.stringify(s.groups)}` +
+      (s.vision ? `\nThe photographer wants the photos to feel: ${s.vision}.` : ''),
       ['post']);
     log(s, 'planning', 'Run complete', 'info');
   } catch (e) {
@@ -256,6 +277,7 @@ http.createServer(async (req, res) => {
     const data = body ? JSON.parse(body) : {};
     if (url.pathname === '/api/start') { S = newRun(data.askBefore); run(S); }
     if (url.pathname === '/api/resolve' && S) resolve(S, data.id, data.answer);
+    if (url.pathname === '/api/chat' && S) chat(S, String(data.message).slice(0, 200));
     res.writeHead(200, { 'content-type': 'application/json' });
     return res.end(JSON.stringify(S, (k, v) => k.startsWith('_') ? undefined : v));
   }
