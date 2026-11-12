@@ -1,0 +1,12 @@
+{
+  "calls": [
+    {
+      "name": "approve_edits",
+      "input": {
+        "ok": true,
+        "notes": "Approved: picking Take 4 for \"Signet ring, giant hand\" for the sharper ring detail suits the giant-vs-tiny jewelry focus, the six other shots were picked, cropped and edited, and the \"Pearl necklace on the grass\" reshoot is already settled."
+      }
+    }
+  ],
+  "text": "I approved the edits. Take 4 is a good pick for \"Signet ring, giant hand\": the sharper ring detail is what makes the giant-vs-tiny scale shift work, and that's central to the look. The six other shots were each picked, cropped and edited from their best take.\n\n\"Pearl necklace on the grass\" is on hold until the reshoot because the clasp was missing. You'd already decided that, so I didn't count it against the set."
+}

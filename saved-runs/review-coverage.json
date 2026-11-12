@@ -1,0 +1,13 @@
+{
+  "calls": [
+    {
+      "name": "request_reshoot",
+      "input": {
+        "shot": "Pearl necklace on the grass",
+        "reason": "Clasp is cropped out in every take. Reframe the low grass angle so the full necklace and clasp are in frame.",
+        "why": "The product page needs the clasp, so this is a must-have. The other 7 shots all have sharp, well-exposed takes."
+      }
+    }
+  ],
+  "text": "Coverage isn't complete yet. I've scheduled a reshoot of \"Pearl necklace on the grass\" because the clasp is cut off in every take, and the product page needs it. The photographer should reframe the low shot from the grass so the whole necklace and clasp are in frame, and keep the soft daylight and pastel sky.\n\nThe other 7 shots each have a sharp, well-exposed take, so once this one is reshot the list is done."
+}
