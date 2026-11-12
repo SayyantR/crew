@@ -104,7 +104,7 @@ Start the agent server from the repository root:
 
 ```bash
 npm install
-cp .env.example .env   # then put your ANTHROPIC_API_KEY in .env
+echo "ANTHROPIC_API_KEY=your-key" > .env
 npm start
 ```
 
