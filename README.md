@@ -1,5 +1,7 @@
 # Crew
 
+**[Watch the demo video](https://drive.google.com/file/d/1NnmkfI1Y27lga_HEn0Dg2FCOG_KvvSRT/view?usp=sharing)** (3 min)
+
 One photographer. A full crew.
 
 Crew gives a solo photographer a team of AI agents that plan a shoot, check it, edit it and post it. The photographer sets once how hands-on they want to be, and the agents follow that contract for the whole project: they do the work they are allowed to do, and stop to ask only where the photographer said to ask.
